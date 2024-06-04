@@ -2,6 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const JavaScriptObfuscator = require('webpack-obfuscator');
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
@@ -27,7 +29,8 @@ module.exports = (env, argv) => {
                                          },
                                      },
                                      extractComments: false,
-                                 })
+                                 }),
+                new CssMinimizerPlugin(),
             ],
         },
         module: {
@@ -59,7 +62,10 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                                       template: './index.html',
                                       inject: 'body',
-                                  })
+                                  }),
+            new JavaScriptObfuscator({
+                                         rotateStringArray: true,
+                                     }, ['excluded_bundle_name.js']),
         ],
         resolve: {
             fallback: {
