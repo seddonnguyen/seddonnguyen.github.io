@@ -1,5 +1,4 @@
 'use strict';
-import '../css/styles.css';
 
 class PipeAnimation {
     constructor() {
@@ -44,6 +43,12 @@ class PipeAnimation {
             height: 100%;
         `;
         this.container.appendChild(this.canvas.b);
+    }
+
+
+    deleteCanvas() {
+        this.container = document.getElementsByTagName('canvas');
+        this.container[0].remove();
     }
 
     resize() {
@@ -205,6 +210,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('resize', () => {
     const pipeAnimation = new PipeAnimation();
+    pipeAnimation.deleteCanvas();
     pipeAnimation.createCanvas();
     pipeAnimation.setup();
 });
