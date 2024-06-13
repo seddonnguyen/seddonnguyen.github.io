@@ -17,14 +17,13 @@
               font-style: normal;
           }
 
-html, body {
+body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     width: 100vw;
-    height: calc(100vh - 13rem);
-    min-height: 100vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
     color: var(--color-text);
